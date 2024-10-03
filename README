@@ -1,0 +1,64 @@
+# MALDI-IHC Quantification Based on PNG Images of Labels
+
+This script processes MALDI-IHC images (in PNG format) to calculate the percentage of different IHC markers in each image. The specific markers used for this example are: Macrophages (CD68), Lymphocytes (CD8a), and ki67 (cell proliferation marker). The script is designed to automate the quantification process by measuring the percentage of specific colors, representing labeled areas, in the image.
+
+## Overview
+
+A recent immunoscore based on SpiderMass-MSI was developed to assess immune response, but the validation using MALDI-IHC images remains visual and subjective ([DOI:10.1016/j.xcrm.2024.101482](https://doi.org/10.1016/j.xcrm.2024.101482)). This script was created to provide a quantifiable metric to compare the expression of different IHC markers by calculating the percentage of labeled regions in each image.
+
+### Key Features
+- **Load Images**: Load three PNG images, representing different IHC markers.
+- **Thresholding**: Apply a threshold to differentiate between black and non-black pixels.
+- **Percentage Calculation**: Calculate the percentage of black and non-black pixels for each image.
+- **Normalization**: Normalize the percentages and visualize them in a bar chart.
+- **Visualization**: Plot the results in a stacked bar chart.
+
+### Requirements
+
+- `Pillow (PIL)` for image processing.
+- `numpy` for numerical operations.
+- `matplotlib` for visualization.
+
+### Installation
+
+1. Clone the repository:
+
+    ```bash
+    git clone https://github.com/yourusername/MALDI-IHC-Quantification.git
+    cd MALDI-IHC-Quantification
+    ```
+
+2. Install the necessary packages:
+
+    ```bash
+    pip install -r requirements.txt
+    ```
+
+### Usage
+
+1. Ensure that you have three PNG images for the IHC markers (e.g., `CD68.png`, `ki67.png`, `CD8a.png`).
+2. Run the Python script:
+
+    ```bash
+    python maldi_ihc_quantification.py
+    ```
+
+3. The script will calculate and display the percentages of black and non-black areas for each marker image and plot a bar chart of the results.
+
+### How It Works
+
+1. **Load Images**: The script loads the specified PNG images (`CD68.png`, `ki67.png`, and `CD8a.png`).
+2. **Define Colors**: Specify the colors used for each IHC marker.
+3. **Thresholding**: A threshold (default: 0) is applied to distinguish black pixels (representing areas without label) from dark-colored pixels.
+4. **Percentage Calculation**: The script computes the percentage of black and non-black pixels in each image.
+5. **Normalization**: Normalize the percentages for comparison across images.
+6. **Visualization**: The results are plotted using a stacked bar chart to compare the black and non-black areas across the markers.
+
+### Example
+
+- **Input**: Three images representing the IHC markers.
+- **Output**: A bar chart showing the normalized percentages of labeled (non-black) and unlabeled (black) areas, along with printed percentage values.
+
+### Adjustments
+- Modify the `threshold` variable to fine-tune the black pixel detection.
+- Change the `image_paths` to load your own IHC marker images.
